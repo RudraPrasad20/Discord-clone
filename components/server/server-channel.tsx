@@ -125,7 +125,6 @@ const ServerChannel = ({ channel, server, role }: ServerChannelProps) => {
   };
 
   const Icon = iconMap[channel.type];
-
   return (
     <button
       onClick={onClick}
