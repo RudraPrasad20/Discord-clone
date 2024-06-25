@@ -22,7 +22,7 @@ interface ServerSearchProps {
           name: string;
           id: string;
         }[]
-      | undefined;
+      ;
   }[];
 }
 
@@ -42,6 +42,10 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  useEffect(() => {
+    console.log('params:', params);
+  }, [params]);
+
   const onClick = ({
     id,
     type,
@@ -50,8 +54,12 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
     type: "channel" | "member";
   }) => {
     setOpen(false);
+    if (!params?.serverId) {
+      console.error('Server ID is missing in params');
+      return;
+    }
     if (type === "member") {
-      return router.push(`/servers/${params?.serverId}/conversations/${id}`);
+      return router.push(`/servers/${params.serverId}/conversations/${id}`);
     }
 
     if (type === "channel") {

@@ -38,7 +38,7 @@ export const InviteModel = () => {
       const response = await axios.patch(
         `/api/servers/${server?.id}/invite-code`
       );
-      onOpen("invite", { server: response.data });
+     onOpen("members", { server: response.data, query: {} });
     } catch (error) {
       console.log(error);
     } finally {

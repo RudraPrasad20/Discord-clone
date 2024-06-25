@@ -43,7 +43,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             {isModerator && (
                 <DropdownMenuItem
                 // server from our interface
-                onClick={()=> onOpen("invite", {server})}
+                onClick={()=> onOpen("invite", {server, query: {}})}
                 className=" text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
                 >
                     Invite
@@ -52,7 +52,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             )}
             {isAdmin && (
                 <DropdownMenuItem
-                onClick={()=> onOpen("editServer", {server})}
+                onClick={()=> onOpen("editServer", {server, query: {}})}
                 className=" px-3 py-2 text-sm cursor-pointer"
                 >
                     Settings
@@ -61,7 +61,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             )}
             {isAdmin && (
                 <DropdownMenuItem
-                onClick={()=> onOpen("members", {server})}
+                onClick={()=> onOpen("members", {server, query: {}})}
                 className=" px-3 py-2 text-sm cursor-pointer"
                 >
                     Manage
@@ -70,7 +70,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             )}
             {isModerator && (
                 <DropdownMenuItem
-                onClick={()=> onOpen("createChannel", {server})}
+                onClick={()=> onOpen("createChannel", {server, query: {}})}
                 className=" px-3 py-2 text-sm cursor-pointer"
                 >
                     Create Channel
@@ -82,7 +82,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             )}
              {isModerator && (
                 <DropdownMenuItem
-                onClick={()=> onOpen("deleteServer", {server})}
+                onClick={()=> onOpen("deleteServer", {server, query:{}})}
                 className=" text-red-500 px-3 py-2 text-sm cursor-pointer"
                 >
                     Delete
@@ -91,7 +91,7 @@ export function ServerHeader({server, role}: ServerHeaderProps) {
             )}
              {!isAdmin && (
                 <DropdownMenuItem
-                onClick={()=> onOpen("leaveServer", {server})}
+                onClick={()=> onOpen("leaveServer", {server, query: {}})}
                 className=" text-red-500 px-3 py-2 text-sm cursor-pointer"
                 >
                     Leave

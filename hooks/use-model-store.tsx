@@ -1,43 +1,3 @@
-
-// // Import necessary Recoil functions
-// import { atom, useRecoilState } from 'recoil'; 
-// export type ModalType = "createServer";
-
-// // Define an atom for the modal state
-// export const modalState = atom<ModalType | null>({
-//   key: 'modalState', // Unique ID (with respect to other atoms/selectors)
-//   default: null, // Initial value
-// });
-
-// // Create a custom hook to manage the modal state
-// export function useModal() {
-//   const [modalType, setModalType] = useRecoilState(modalState);
-
-//   const openModal = (type: ModalType) => {
-//     setModalType(type);
-//   };
-
-// //   const closeModal = () => {
-// //     setModalType(null);
-// //   };
-
-// const closeModal = (type?: ModalType) => {
-//     if (type) {
-//       setModalType(type);
-//     } else {
-//       setModalType(null);
-//     }
-//   };
-
-//   return {
-//     modalType,
-//     isOpen: modalType !== null,
-//     onOpen: openModal,
-//     onClose: closeModal,
-//   };
-// }
-
-
 import { Channel, channelType, Server } from "@prisma/client";
 import { atom, useRecoilState } from "recoil";
 
@@ -52,27 +12,35 @@ export type ModalType =
 | "deleteChannel"
 | "editChannel"
 | "messageFile"
-| "deleteMessage";
-
+| "deleteMessage"
+| "messageFile";
 
 interface ModelData {
-  server?: Server,
-  channel?: Channel,
-  channelType?: channelType
+  server?: Server;
+  channel?: Channel;
+  channelType?: channelType;
+  apiUrl?: string;
+  query: Record<string, any>;
 }
+
 interface ModalStore {
   type: ModalType | null;
-  data: ModelData
+  data: ModelData;
   isOpen: boolean;
   onOpen: (type: ModalType, data?: ModelData) => void;
   onClose: () => void;
 }
 
+// Default ModelData value including the required 'query' property
+const defaultModelData: ModelData = {
+  query: {}
+};
+
 const modalState = atom<ModalStore>({
   key: 'modalState',
   default: {
     type: null,
-    data: {},
+    data: defaultModelData, // Use the default ModelData value
     isOpen: false,
     onOpen: () => {},
     onClose: () => {}
@@ -82,7 +50,7 @@ const modalState = atom<ModalStore>({
 export const useModal = () => {
   const [modal, setModal] = useRecoilState(modalState);
 
-  const onOpen = (type: ModalType, data={}) => {
+  const onOpen = (type: ModalType, data: ModelData = defaultModelData) => {
     setModal({ ...modal, isOpen: true, type, data });
   };
 

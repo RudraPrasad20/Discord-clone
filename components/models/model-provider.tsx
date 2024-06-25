@@ -10,8 +10,7 @@ import LeaveServerModel from "./leave-server-model";
 import DeleteServerModal from "./delete-server-model";
 import DeleteChannelModal from "./delete-channel-model";
 import EditChannelModal from "./edit-channel-model";
-
-
+import MessageFileModel from "./message-file-model";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,14 +23,15 @@ export const ModalProvider = () => {
   return (
     <div>
       <CreateServerModel />
-      <InviteModel/>
-      <EditServerModel/>
-  <MembersModel/>
-  <CreateChannelModel/>
-  <LeaveServerModel/>
-  <DeleteServerModal/>
-  <DeleteChannelModal/>
-  <EditChannelModal/>
+      <InviteModel />
+      <EditServerModel />
+      <MembersModel />
+      <CreateChannelModel />
+      <LeaveServerModel />
+      <DeleteServerModal />
+      <DeleteChannelModal />
+      <EditChannelModal />
+      <MessageFileModel />
     </div>
   );
 };
