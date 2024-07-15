@@ -11,6 +11,7 @@ import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "@/components/providers";
 import { SocketProvider } from "@/components/socket-provider";
+import { QueryProvider } from "@/components/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,7 +37,11 @@ export default function RootLayout({
           >
             <SocketProvider>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            <Providers>{children}</Providers>
+            <Providers>
+              <QueryProvider>
+              {children}
+              </QueryProvider>
+            </Providers>
             </SocketProvider>
           </ThemeProvider>
         </body>
